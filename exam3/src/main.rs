@@ -5,10 +5,10 @@ fn main() {
         active: true,
     };
 
-    meet(&cat, &gildong); // 에러. Person이 Greet을 구현한 것은 맞지만, T타입이 서로 같아야 하는데 Pet과 Person으로 다르기 때문
+    meet(&cat, &gildong);
 }
 
-fn meet<T: Greet>(one: &T, another: &T) {
+fn meet<T: Greet, U: Greet>(one: &T, another: &U) {
     println!("첫번째가 인사합니다 {}", one.greeting());
     println!("두번째가 인사합니다 {}", another.greeting());
 }
