@@ -9,9 +9,9 @@ fn main() {
     println!("더 긴 문자열은 {}", res);
 }
 
-fn longest(s1: &str, s2: &str) -> &str {  // 오류: borrow한 값인 s1 또는 s2를 리턴해야 하는데, 컴파일러는 모름 (실행시점에서만 알 수 있음)
-    if s1.len() > s2.len() {              //       따라서 명시적으로 borrow lifetime을 명시해 줘야 함
-        s1
+fn longest<'a>(s1: &'a str, s2: &'a str) -> &'a str {  // 오류: borrow한 값인 s1 또는 s2를 리턴해야 하는데, 컴파일러는 모름 (실행시점에서만 알 수 있음)
+    if s1.len() > s2.len() {                           //       따라서 명시적으로 borrow lifetime을 명시해 줘야 함
+        s1                                             //       반환값의 수명보다, 반환값의 원본 값의 수명이 더 길거나 같아야 함을 적어준 것
     } else {
         s2
     }
